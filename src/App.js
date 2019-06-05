@@ -5,6 +5,8 @@ import 'reset-css';
 import {
   AppContainer,
   FormContainer,
+  FormHeader,
+  FormTitle,
   FormInput,
   FormBtn
 } from './AppStyles';
@@ -16,6 +18,9 @@ class App extends React.Component {
     return (
         <AppContainer>
           <FormContainer>
+            <FormHeader>
+              <FormTitle>Styled Components</FormTitle>
+            </FormHeader>
             <FormInput email="email" />
             <FormInput />
             <FormBtn>Submit</FormBtn>
