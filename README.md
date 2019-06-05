@@ -113,9 +113,13 @@ const GreenButton = styled(Button)`
 ### Attributes
 For some elements we want to attach attributes to them to provide extra information about the tags. Using regular CSS, this would look something like the following:
 
+##### JSX
+
 ```html
  <input type="text" placeholder="please enter a username" className="form-input"/>
 ```
+
+##### CSS
 
 ```css
 .form-input {
@@ -189,3 +193,78 @@ const Rotate = styled.div`
   font-size: 1.2rem;
 `;
 ```
+
+### Createing A Theme
+Styled components give us the oppritunity to create a defined theme for our application. We first want to bring in the `ThemeProvider` higher order component and wrap our application in it. At the top level of your application, import the `ThemeProvider`.
+
+```javascript
+import { ThemeProvider } from 'styled-components;
+```
+
+We then want to wrap our entire application with it.
+
+```javascript
+class App extends React.Component {
+  render() {
+    return (
+       <ThemeProvider>
+         <Wrapper>
+           <Home />
+         </Wrapper>
+       </ThemeProvider>
+    );
+  }
+};
+
+export default App;
+```
+
+The `ThemeProvider` requires a `theme` prop. This will be an object that will serve our styles defined for our theme to our application.
+
+```javascript
+class App extends React.Component {
+  render() {
+    return (
+       <ThemeProvider theme={}>
+          <Wrapper>
+           <Home />
+         </Wrapper>
+       </ThemeProvider>
+    );
+  }
+};
+
+export default App;
+```
+
+We now want to create a theme object that will contain the styling we want for our theme and pass it to the `theme` prop on `ThemeProvider`. Styles that are declared will be set to the styled components `props` and we will have access to them through the theme property on the props `props.theme.name_of_style_property`. When it's all said and done, our file for our `App` component will look something like this:
+
+```javascript
+import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+
+// Create The Theme
+const appTheme = {
+  primaryPurple: '#bd93f9'
+};
+
+class App extends React.Component {
+  render() {
+    return (
+       <ThemeProvider theme={appTheme}>
+          <Wrapper>
+           <Home />
+         </Wrapper>
+       </ThemeProvider>
+    );
+  }
+};
+
+// Styled Components
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  bavkground: ${props => props.theme.primaryPurple}
+`
+
+export default App;
