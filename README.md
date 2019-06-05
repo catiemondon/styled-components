@@ -194,7 +194,7 @@ const Rotate = styled.div`
 `;
 ```
 
-### Createing A Theme
+### Creating A Theme
 Styled components give us the oppritunity to create a defined theme for our application. We first want to bring in the `ThemeProvider` higher order component and wrap our application in it. At the top level of your application, import the `ThemeProvider`.
 
 ```javascript
@@ -268,3 +268,9 @@ const Wrapper = styled.div`
 `
 
 export default App;
+
+---
+
+# Sources
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+[Styled Component Docs](https://www.styled-components.com/)
