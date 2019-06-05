@@ -33,3 +33,27 @@ const Button = styled.button`
 
 This backtick syntax is a newer feature to Javascript known as `tagged template literals`. This pretty much allows us to call functions within backticks. Find out more about `tagged template literals` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates).
 
+Let's now render this sweet new `Button` component.
+```javascript
+import React from 'react'
+// styled components library
+import styled from 'styled-components';
+
+export const App = () => {
+    return (
+        <div>
+            <Button>Submit</Button>
+        </div>
+    )
+};
+
+// Styled Components
+const Button = styled.button`
+  background: palevioletred;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: palevioletred;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+`
+```
