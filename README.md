@@ -109,3 +109,42 @@ const GreenButton = styled(Button)`
   border-color: green;
 `;
 ```
+
+### Attributes
+For some elements we want to attach attributes to them to provide extra information about the tags. In CSS, this would look something like the following:
+
+```html
+ <input type="text" placeholder="please enter a username" />
+```
+
+With styled components, we can use the built-in method `.attrs()` that we recieve for each element. The `.attrs()` method will be given and object as an argument. This object will contain information that will provide that extra attribute data to the component. The object will use the object keys to represent the name of the attribute and and value of the key to represent the value of the attribute. This will look something like this:
+
+```javascript
+const FormInput = styled.input.attrs({
+  type: 'text',
+  placeholder: 'please enter a username or password 
+})`
+  idth: 80%;
+  height: 10%;
+  outline: none;
+`
+```
+
+We can also use the function interpolations and props to determine what kind of input it should be. This way we can keep our code reusable. Example:
+
+```javascript
+// In the return of the component
+<FormInput email="email" />
+<FormInput />
+
+// Styled Component
+const FormInput = styled.input.attrs({
+  placeholder: props => props.email ? 'email' : 'password',
+  type: props => props.email ? 'email' : 'password'
+})`
+  width: 80%;
+  height: 10%;
+  outline: none;
+```
+
+Here we are just checking to see if there is an 'email' prop set to the component to see if it will have an email type of input or password.
