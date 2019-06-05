@@ -57,3 +57,34 @@ const Button = styled.button`
   padding: 0.25em 1em;
 `
 ```
+
+### Using Props
+We can pass function 'interpolations' to our component styling to render styles based off of the props that are given to the styled component.
+
+Let's look at what that looks like:
+```javascript
+import React from 'react'
+// styled components library
+import styled from 'styled-components';
+
+export const App = () => {
+    return (
+        <div>
+            <Button login>Login</Button>
+            <Button>Submit</Button>
+        </div>
+    )
+};
+
+// Styled Components
+const Button = styled.button`
+  background: ${props => props.login ? 'palevioletred' : 'skyblue';
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: palevioletred;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+`
+```
+
+Above we have are now rendering the same `Button` styled component twice, but we are passing the prop of `login` for the login button. In our styling we can use the `props` that are set to the component to check and see if it has the `login` prop set to it. We then can use `${}` (just like a regular javascript template string) syntax to use an interpolated arrow function and base the `background` styling off of whether we have the `login` prop or not. This is great because it creates very reusable and DRY code.
