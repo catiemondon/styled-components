@@ -194,6 +194,54 @@ const Rotate = styled.div`
 `;
 ```
 
+### Psuedo Selecters, Psuedo ELements, and Nesting
+Stlyed components uses a preprocessor called `stylis` that supports scss-like-syntax to allow us to use nesting styles. Psuedo selectors and psuedo elements don't require any further configuration and are automatically set to the component itself. It will look like this:
+
+```javascript
+ const Button = styled.div`
+   color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  
+  // this is what it looks like to use psuedo elements and selectors
+  :hover {
+    // apply styles for the hover effect here
+    color: black;
+  }
+  
+  ::before {
+    content: '💅';
+  };
+ `
+```
+
+We can follow more complex selector patterns by using the ampersand (&). The ampersand will refer directly back to the main component. Any nested selectors not using the `&` will refer to the children elements within the component.
+
+```javascript
+const Button = styled.div`
+   color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  
+  // refering to the hover effect for the button itself
+  &:hover {
+    cursor: pointer;
+  }
+  
+  // refering to a nested h1 child element
+  h1 {
+    font-size: 20;
+  }
+  `
+```
+
+
 ### Creating A Theme
 Styled components give us the oppritunity to create a defined theme for our application. We first want to bring in the `ThemeProvider` higher order component and wrap our application in it. At the top level of your application, import the `ThemeProvider`.
 
