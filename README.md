@@ -88,3 +88,24 @@ const Button = styled.button`
 ```
 
 Above we have are now rendering the same `Button` styled component twice, but we are passing the prop of `login` for the login button. In our styling we can use the `props` that are set to the component to check and see if it has the `login` prop set to it. We then can use `${}` (just like a regular javascript template string) syntax to use an interpolated arrow function and base the `background` styling off of whether we have the `login` prop or not. This is great because it creates very reusable and DRY code.
+
+### Extending Styles
+Sometimes we want to use the same styled component that we created but we want to tweak some styling just enough that using interpolated functions to decide a value for a property won't be enough. In thise case, we can create a new styled component 
+that extends the component we want to use so we will inherit the styling properties already set to that component and add some of our own to it. This will save us from writing redundent code. Extending a styled component looks a little like this:
+```javascript
+// The Button from the last section without the interpolations
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+// A new component based on Button, but with some override styles
+const GreenButton = styled(Button)`
+  color: green;
+  border-color: green;
+`;
+```
