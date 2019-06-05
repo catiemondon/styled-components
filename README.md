@@ -111,10 +111,18 @@ const GreenButton = styled(Button)`
 ```
 
 ### Attributes
-For some elements we want to attach attributes to them to provide extra information about the tags. In CSS, this would look something like the following:
+For some elements we want to attach attributes to them to provide extra information about the tags. Using regular CSS, this would look something like the following:
 
 ```html
- <input type="text" placeholder="please enter a username" />
+ <input type="text" placeholder="please enter a username" className="form-input"/>
+```
+
+```css
+.form-input {
+  width: 80%;
+  height: 10%;
+  outline: none;
+};
 ```
 
 With styled components, we can use the built-in method `.attrs()` that we recieve for each element. The `.attrs()` method will be given and object as an argument. This object will contain information that will provide that extra attribute data to the component. The object will use the object keys to represent the name of the attribute and and value of the key to represent the value of the attribute. This will look something like this:
@@ -124,7 +132,7 @@ const FormInput = styled.input.attrs({
   type: 'text',
   placeholder: 'please enter a username or password 
 })`
-  idth: 80%;
+  width: 80%;
   height: 10%;
   outline: none;
 `
@@ -148,3 +156,36 @@ const FormInput = styled.input.attrs({
 ```
 
 Here we are just checking to see if there is an 'email' prop set to the component to see if it will have an email type of input or password.
+
+### Animations
+We can create animations for styled components by bringing in the `keyframes` helper from the styled components package. At the top of the file, import the `keyframes` helper.
+
+```javascript
+import { keyframes } from 'styled-components'
+```
+
+We can now create an animation variable to store the animation in.
+
+```javascript
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+```
+
+We can now use this animation on one of our styled components. We need to make sure we use interpolation to include the animation, so wrap the name of the animation variable in the `${}` syntax. It will look like this:
+
+```javascript
+// Here we create a component that will rotate everything we pass in over two seconds
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+`;
+```
